@@ -3,6 +3,8 @@
 import { useState } from "react"
 import jsPDF from "jspdf"
 import Link from "next/link"
+import Card from "../components/card"
+import SeverityBadge from "../components/severitybadge"
 
 
 const SYMPTOMS = [
@@ -62,7 +64,7 @@ export default function Home() {
         let y = 10
 
         doc.setFontSize(16)
-        doc.text("CuraHome :Phenotype-Guided Medical Guidance", 10, y)
+        doc.text("CuraHome: Phenotype-Guided Medical Guidance", 10, y)
         y += 10
 
         doc.setFontSize(12)
@@ -125,126 +127,103 @@ export default function Home() {
 
 
     return (
-        <main style={{ padding: 24, maxWidth: 640, margin: "auto" }}>
-            <Link href="/" style={{ fontSize: "0.9rem" }}>
+        <main className="container">
+            <Link href="/" style={{ fontSize: 14, display: "inline-block", marginBottom: 16 }}>
                 ← Back to Home
             </Link>
 
-            <h1 style={{ marginBottom: 12 }}>🩺 Symptom Analyzer</h1>
-            <p style={{ color: "#555" }}>
-                Select age, sex,<br></br> and all the symptoms you are facing right now to receive guidance.
-            </p>
+            <Card>
+                <h1>Symptom Analyzer</h1>
+                <p className="text-muted" style={{ marginBottom: 24 }}>
+                    Select your age, sex, and all symptoms you are currently experiencing to receive personalized guidance.
+                </p>
 
-            {/* 🔹 AGE INPUT */}
-            <div style={{ marginTop: 16 }}>
-                <label>Age:</label>
-                <input
-                    type="number"
-                    min={1}
-                    value={age}
-                    onChange={(e) => setAge(Number(e.target.value))}
-                    style={{ marginLeft: 8, width: 80 }}
-                />
-            </div>
+                {/* 🔹 AGE INPUT */}
+                <div style={{ marginBottom: 16 }}>
+                    <label style={{ display: "block", marginBottom: 8 }}>Age</label>
+                    <input
+                        type="number"
+                        min={1}
+                        value={age}
+                        onChange={(e) => setAge(Number(e.target.value))}
+                        placeholder="Enter your age"
+                        style={{ maxWidth: 200 }}
+                    />
+                </div>
 
-            {/* 🔹 SEX INPUT */}
-            <div style={{ marginTop: 12 }}>
-                <label>Sex:</label>
-                <select
-                    value={sex}
-                    onChange={(e) => setSex(e.target.value as "male" | "female")}
-                    style={{ marginLeft: 8 }}
-                >
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
-                </select>
-            </div>
+                {/* 🔹 SEX INPUT */}
+                <div style={{ marginBottom: 24 }}>
+                    <label style={{ display: "block", marginBottom: 8 }}>Sex</label>
+                    <select
+                        value={sex}
+                        onChange={(e) => setSex(e.target.value as "male" | "female")}
+                        style={{ maxWidth: 200 }}
+                    >
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                </div>
 
-            <hr style={{ marginTop: 16 }} />
+                <hr />
 
-            {/* 🔹 SYMPTOMS */}
-            <div style={{ marginTop: 16 }}>
-                {SYMPTOMS.map(s => (
-                    <div key={s.key} style={{ marginBottom: 8 }}>
-                        <input
-                            type="checkbox"
-                            checked={selected.includes(s.key)}
-                            onChange={() => toggle(s.key)}
-                        />
-                        <label style={{ marginLeft: 8 }}>{s.label}</label>
-                    </div>
-                ))}
-            </div>
+                {/* 🔹 SYMPTOMS */}
+                <div style={{ marginTop: 24 }}>
+                    <label style={{ display: "block", marginBottom: 12 }}>Select Symptoms</label>
+                    {SYMPTOMS.map(s => (
+                        <div key={s.key} style={{ marginBottom: 12, display: "flex", alignItems: "center" }}>
+                            <input
+                                type="checkbox"
+                                id={s.key}
+                                checked={selected.includes(s.key)}
+                                onChange={() => toggle(s.key)}
+                            />
+                            <label htmlFor={s.key} style={{ marginLeft: 8, marginBottom: 0, fontWeight: 400 }}>{s.label}</label>
+                        </div>
+                    ))}
+                </div>
 
-            {/* 🔹 BUTTONS */}
-            <div style={{ marginTop: 16 }}>
-                <button
-                    onClick={analyze}
-                    disabled={loading || selected.length === 0 || age <= 0}
-                    style={{ marginRight: 8 }}
-                >
-                    {loading ? "Analyzing..." : "Analyze"}
-                </button>
+                {/* 🔹 BUTTONS */}
+                <div style={{ marginTop: 24, display: "flex", gap: 12 }}>
+                    <button
+                        className="button-primary"
+                        onClick={analyze}
+                        disabled={loading || selected.length === 0 || age <= 0}
+                    >
+                        {loading ? "Analyzing..." : "Analyze Symptoms"}
+                    </button>
 
-                <button onClick={reset} disabled={loading}>
-                    Reset
-                </button>
-            </div>
+                    <button className="button-secondary" onClick={reset} disabled={loading}>
+                        Reset
+                    </button>
+                </div>
+            </Card>
 
             {/* 🔹 RESULTS */}
             {result && (
-                <div
-                    style={{
-                        marginTop: 24,
-                        padding: 16,
-                        borderRadius: 8,
-                        border: "1px solid #ddd",
-                        background: "#fafafa"
-                    }}
-                >
-                    <h3>
-                        Severity:{" "}
-                        <span
-                            style={{
-                                color:
-                                    result.severity === "Severe"
-                                        ? "red"
-                                        : result.severity === "Moderate"
-                                            ? "orange"
-                                            : "green"
-                            }}
-                        >
-                            {result.severity}
-                        </span>
-                    </h3>
+                <Card>
+                    <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 16 }}>
+                        <h3 style={{ marginBottom: 0 }}>Severity:</h3>
+                        <SeverityBadge severity={result.severity} />
+                    </div>
 
-                    <p>{result.recommendation}</p>
+                    <p style={{ marginBottom: 24 }}>{result.recommendation}</p>
 
                     {!result.allowHomeCare && (
-                        <div
-                            style={{
-                                background: "#ffe5e5",
-                                padding: 12,
-                                borderRadius: 6,
-                                color: "red",
-                                marginTop: 12
-                            }}
-                        >
-                            🚨 <strong>Emergency Warning:</strong> Seek immediate medical
-                            attention.
+                        <div className="alert alert-danger">
+                            <strong>Emergency Warning:</strong> Seek immediate medical attention.
                         </div>
                     )}
 
                     {result.allowHomeCare && (
                         <>
-                            <h4>🏠 Home Remedies</h4>
+                            <h4>Home Remedies</h4>
                             <ul>
                                 {result.remedies?.map((r: string, i: number) => (
                                     <li key={i}>{r}</li>
                                 ))}
                             </ul>
 
-                            <h4>🍎 Recommended Foods</h4>
+                            <h4>Recommended Foods</h4>
                             <ul>
                                 {result.foods?.map((f: string, i: number) => (
                                     <li key={i}>{f}</li>
@@ -255,45 +234,49 @@ export default function Home() {
 
                     {result.medicines?.length > 0 && (
                         <>
-                            <h4>💊 First-line Medicines</h4>
-                            <ul>
+                            <h4>First-line Medicines</h4>
+                            <ul style={{ listStyle: "none", marginLeft: 0 }}>
                                 {result.medicines.map((med: any, i: number) => (
-                                    <li key={i} style={{ marginBottom: 8 }}>
+                                    <li key={i} style={{ marginBottom: 16, paddingLeft: 0 }}>
                                         <strong>{med.name}</strong> — {med.dose}
                                         <br />
-                                        <small>{med.frequency}</small>
-                                        {med.notes && <div>⚠️ {med.notes}</div>}
+                                        <small style={{ display: "block", marginTop: 4 }}>{med.frequency}</small>
+                                        {med.notes && (
+                                            <small style={{ display: "block", marginTop: 4, color: "var(--color-warning)" }}>
+                                                Note: {med.notes}
+                                            </small>
+                                        )}
                                     </li>
                                 ))}
                             </ul>
                         </>
                     )}
 
-                    <hr style={{ marginTop: 20 }} />
+                    <hr />
 
-                    <p style={{ fontSize: "0.85rem", color: "#666" }}>
-                        ⚠️ <strong>Medical Disclaimer:</strong> This application provides
-                        general guidance based on self-reported symptoms. It is not a medical
-                        diagnosis and does not replace professional medical advice.
+                    <p className="text-muted" style={{ fontSize: 13, marginBottom: 24 }}>
+                        <strong>Medical Disclaimer:</strong> This application provides general guidance based on self-reported symptoms.
+                        It is not a medical diagnosis and does not replace professional medical advice.
                     </p>
-                    <button
-                        onClick={generatePDF}
-                        style={{ marginTop: 12 }}
-                    >
-                        📄 Download PDF
-                    </button>
-                    <button
-                        onClick={() => {
-                            const query = selected.join(",")
-                            window.location.href = `/recipes?symptoms=${query}`
-                        }}
-                        style={{ marginTop: 12 }}
-                    >
-                        🍲 View Recommended Recipes
-                    </button>
 
-
-                </div>
+                    <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
+                        <button
+                            className="button-primary"
+                            onClick={generatePDF}
+                        >
+                            Download PDF Report
+                        </button>
+                        <button
+                            className="button-secondary"
+                            onClick={() => {
+                                const query = selected.join(",")
+                                window.location.href = `/recipes?symptoms=${query}`
+                            }}
+                        >
+                            View Recommended Recipes
+                        </button>
+                    </div>
+                </Card>
             )}
         </main>
     )

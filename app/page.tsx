@@ -1,69 +1,52 @@
 "use client"
 
 import Link from "next/link"
+import Card from "./components/card"
 
 export default function Home() {
   return (
-    <main
-      style={{
-        minHeight: "100vh",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        background: "#f7f9fc",
-        padding: 24
-      }}
-    >
-      <div
-        style={{
-          maxWidth: 600,
-          textAlign: "center",
-          background: "white",
-          padding: 32,
-          borderRadius: 12,
-          boxShadow: "0 4px 12px rgba(0,0,0,0.1)"
-        }}
-      >
-        <h1>🧬  CuraHome</h1><br></br>
-        <h2> Phenotype-Guided Medical Assistant</h2>
+    <main className="container" style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center" }}>
+      <Card className="text-center" style={{ maxWidth: 600 }}>
+        <h1 style={{ marginBottom: 8 }}>CuraHome</h1>
+        <h2 style={{ fontSize: 20, fontWeight: 500, color: "var(--color-text-muted)", marginBottom: 24 }}>
+          Phenotype-Guided Medical Assistant
+        </h2>
 
-        <p style={{ marginTop: 16, color: "#555" }}>
+        <p className="text-muted" style={{ marginBottom: 24 }}>
           A decision-support platform that provides first-line medical guidance
           based on self-reported symptoms, age, and phenotype factors.
         </p>
 
-        <ul style={{ textAlign: "left", marginTop: 20 }}>
-          <li>✔ Symptom-based severity assessment</li>
-          <li>✔ Age & sex-aware dosage guidance</li>
-          <li>✔ Emergency detection</li>
-          <li>✔ Home remedies & nutrition advice</li>
-          <li>✔ PDF export for offline reference</li>
-        </ul>
+        <div style={{ textAlign: "left", marginBottom: 24 }}>
+          <h3 style={{ fontSize: 16, marginBottom: 12 }}>Key Features</h3>
+          <ul style={{ listStyle: "none", marginLeft: 0 }}>
+            <li style={{ marginBottom: 8 }}>✓ Symptom-based severity assessment</li>
+            <li style={{ marginBottom: 8 }}>✓ Age and sex-aware dosage guidance</li>
+            <li style={{ marginBottom: 8 }}>✓ Emergency detection</li>
+            <li style={{ marginBottom: 8 }}>✓ Home remedies and nutrition advice</li>
+            <li style={{ marginBottom: 8 }}>✓ PDF export for offline reference</li>
+          </ul>
+        </div>
 
-        <Link href="/analyzer">
-          <button
-            style={{
-              marginTop: 24,
-              padding: "10px 20px",
-              fontSize: 16,
-              cursor: "pointer"
-            }}
-          >
-            Start Symptom Analysis →
-          </button>
+        <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+          <Link href="/analyzer">
+            <button className="button-primary" style={{ width: "100%" }}>
+              Start Symptom Analysis
+            </button>
+          </Link>
 
-        </Link>
-        <Link href="/recipes">
-          <button style={{ marginTop: 12 }}>
-            View Food & Recipe Guidance 🍎
-          </button>
-        </Link>
+          <Link href="/recipes">
+            <button className="button-secondary" style={{ width: "100%" }}>
+              View Food & Recipe Guidance
+            </button>
+          </Link>
+        </div>
 
-
-        <p style={{ marginTop: 16, fontSize: "0.85rem", color: "#777" }}>
-          ⚠️ Not a substitute for professional medical diagnosis.
+        <p className="text-muted" style={{ marginTop: 24, marginBottom: 0, fontSize: 13 }}>
+          <strong>Medical Disclaimer:</strong> This application provides general guidance.
+          It is not a substitute for professional medical diagnosis.
         </p>
-      </div>
+      </Card>
     </main>
   )
 }

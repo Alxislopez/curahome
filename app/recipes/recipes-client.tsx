@@ -3,6 +3,8 @@
 import { useState } from "react"
 import { useSearchParams } from "next/navigation"
 import { RECIPES } from "../data/recipes"
+import Card from "../components/card"
+import Link from "next/link"
 
 export default function RecipesClient() {
     const [search, setSearch] = useState("")
@@ -33,43 +35,39 @@ export default function RecipesClient() {
     )
 
     return (
-        <main style={{ maxWidth: 700, margin: "auto", padding: 24 }}>
-            <h1>🍲 Recommended Foods & Recipes</h1>
+        <main className="container">
+            <Link href="/analyzer" style={{ fontSize: 14, display: "inline-block", marginBottom: 16 }}>
+                ← Back to Analyzer
+            </Link>
 
-            <input
-                type="text"
-                placeholder="Search recipes or categories..."
-                value={search}
-                onChange={e => setSearch(e.target.value)}
-                style={{
-                    width: "100%",
-                    padding: 10,
-                    marginTop: 16,
-                    marginBottom: 20
-                }}
-            />
-
-            {selectedSymptoms.length > 0 && (
-                <p style={{ marginBottom: 12, color: "#555" }}>
-                    Showing recipes for:{" "}
-                    <strong>{selectedSymptoms.join(", ")}</strong>
+            <Card>
+                <h1>Recommended Foods & Recipes</h1>
+                <p className="text-muted" style={{ marginBottom: 24 }}>
+                    Discover nutritious recipes tailored to support your recovery and well-being.
                 </p>
-            )}
+
+                <input
+                    type="text"
+                    placeholder="Search recipes or categories..."
+                    value={search}
+                    onChange={e => setSearch(e.target.value)}
+                />
+
+                {selectedSymptoms.length > 0 && (
+                    <div className="alert alert-info" style={{ marginTop: 16 }}>
+                        Showing recipes for: <strong>{selectedSymptoms.join(", ")}</strong>
+                    </div>
+                )}
+            </Card>
 
             {filtered.length === 0 && (
-                <p>No recipes found for the selected symptoms.</p>
+                <Card>
+                    <p className="text-muted" style={{ marginBottom: 0 }}>No recipes found for the selected symptoms.</p>
+                </Card>
             )}
 
             {filtered.map(recipe => (
-                <div
-                    key={recipe.id}
-                    style={{
-                        border: "1px solid #ddd",
-                        borderRadius: 8,
-                        marginBottom: 12,
-                        padding: 12
-                    }}
-                >
+                <Card key={recipe.id} compact>
                     <div
                         style={{ cursor: "pointer" }}
                         onClick={() =>
@@ -78,21 +76,20 @@ export default function RecipesClient() {
                     >
                         <h3 style={{ marginBottom: 4 }}>{recipe.name}</h3>
                         <small>
-                            {recipe.category} | Helps with:{" "}
-                            {recipe.recommendedFor.join(", ")}
+                            {recipe.category} • Helps with: {recipe.recommendedFor.join(", ")}
                         </small>
                     </div>
 
                     {openId === recipe.id && (
-                        <div style={{ marginTop: 12 }}>
-                            <h4>🧂 Ingredients</h4>
+                        <div style={{ marginTop: 16 }}>
+                            <h4>Ingredients</h4>
                             <ul>
                                 {recipe.ingredients.map((i, idx) => (
                                     <li key={idx}>{i}</li>
                                 ))}
                             </ul>
 
-                            <h4>👩‍🍳 Preparation</h4>
+                            <h4>Preparation</h4>
                             <ol>
                                 {recipe.steps.map((s, idx) => (
                                     <li key={idx}>{s}</li>
@@ -100,7 +97,7 @@ export default function RecipesClient() {
                             </ol>
                         </div>
                     )}
-                </div>
+                </Card>
             ))}
         </main>
     )
