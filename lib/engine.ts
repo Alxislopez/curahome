@@ -15,11 +15,20 @@ function calculateBalancedDose(baseDose: number, medicineCount: number): number 
     )
 }
 
-export function analyzeSymptoms(symptomKeys: string[]) {
-    const { totalScore, emergency } = calculateSeverity(symptomKeys)
+export function analyzeSymptoms(
+    symptomKeys: string[],
+    age: number,
+    sex: "male" | "female"
+) {
+    let { totalScore, emergency } = calculateSeverity(symptomKeys)
+
+    // 🔺 AGE-BASED SEVERITY ADJUSTMENT
+    if (age >= 60) totalScore += 2
+    if (age < 12) totalScore += 1
+
     const severity = classifySeverity(totalScore)
 
-    // 🚨 SAFETY OVERRIDE
+    // 🚨 HARD STOP
     if (emergency || severity === "Severe") {
         return {
             severity,
@@ -34,32 +43,35 @@ export function analyzeSymptoms(symptomKeys: string[]) {
 
     symptomKeys.forEach((key) => {
         const guidance = HOME_CARE_GUIDANCE[key]
-        if (!guidance) return
-
-        guidance.remedies.forEach(r => remedies.add(r))
-        guidance.foods.forEach(f => foods.add(f))
-    })
-
-    // 💊 Medicine selection (DEDUPLICATED)
-    const medicineMap = new Map<string, any>()
-
-    FIRST_LINE_MEDICINES.forEach((med) => {
-        if (med.forSymptoms.some(symptom => symptomKeys.includes(symptom))) {
-            if (!medicineMap.has(med.name)) {
-                medicineMap.set(med.name, med)
-            }
+        if (guidance) {
+            guidance.remedies.forEach(r => remedies.add(r))
+            guidance.foods.forEach(f => foods.add(f))
         }
     })
 
-    const medicines = Array.from(medicineMap.values()).map(med => ({
-        name: med.name,
-        dose: `${calculateBalancedDose(
-            med.standardDoseMg,
-            medicineMap.size
-        )} mg`,
-        frequency: med.frequency,
-        notes: med.notes
-    }))
+    // 💊 Medicine selection
+    const selectedMedicines = FIRST_LINE_MEDICINES.filter(med =>
+        med.forSymptoms.some(symptom => symptomKeys.includes(symptom))
+    )
+
+    const medicineCount = selectedMedicines.length
+
+    const balancedMedicines = selectedMedicines.map(med => {
+        let dose = calculateBalancedDose(med.standardDoseMg, medicineCount)
+
+        // 👶 CHILD
+        if (age < 12) dose = Math.floor(dose * 0.5)
+
+        // 👴 ELDERLY
+        if (age >= 60) dose = Math.floor(dose * 0.75)
+
+        return {
+            name: med.name,
+            dose: `${dose} mg`,
+            frequency: med.frequency,
+            notes: med.notes
+        }
+    })
 
     return {
         severity,
@@ -70,7 +82,7 @@ export function analyzeSymptoms(symptomKeys: string[]) {
         allowHomeCare: true,
         remedies: Array.from(remedies),
         foods: Array.from(foods),
-        medicines,
-        disclaimer: "This is not a medical diagnosis."
+        medicines: balancedMedicines,
+        disclaimer: "Not a medical diagnosis."
     }
 }

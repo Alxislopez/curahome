@@ -7,25 +7,66 @@ export type Guidance = {
 
 export const HOME_CARE_GUIDANCE: Record<string, Guidance> = {
     fever: {
-        remedies: ["Rest adequately", "Use lukewarm sponging if fever is high"],
-        foods: ["Warm fluids", "Light soups", "Plenty of water"]
+        remedies: [
+            "Adequate rest and sleep",
+            "Maintain hydration throughout the day",
+            "Use lukewarm sponging if fever causes discomfort",
+            "Wear light clothing to avoid overheating"
+        ],
+        foods: [
+            "Warm fluids (water, herbal teas)",
+            "Clear vegetable soups",
+            "Electrolyte-rich fluids",
+            "Soft, easily digestible foods"
+        ]
     },
 
     cold: {
-        remedies: ["Steam inhalation", "Warm salt water gargle"],
-        foods: ["Warm fluids", "Honey with warm water", "Citrus fruits"]
+        remedies: [
+            "Steam inhalation to relieve nasal congestion",
+            "Warm salt water gargling for throat comfort",
+            "Rest to support immune recovery",
+            "Avoid cold air and sudden temperature changes"
+        ],
+        foods: [
+            "Warm fluids (ginger tea, herbal teas)",
+            "Honey mixed with warm water",
+            "Citrus fruits rich in vitamin C",
+            "Light soups"
+        ]
     },
 
     cough: {
-        remedies: ["Steam inhalation", "Avoid cold air exposure"],
-        foods: ["Honey", "Warm herbal teas"]
+        remedies: [
+            "Steam inhalation to loosen mucus",
+            "Avoid irritants like smoke or dust",
+            "Keep throat moist with warm fluids",
+            "Rest the voice if coughing is frequent"
+        ],
+        foods: [
+            "Honey (not for children under 1 year)",
+            "Warm herbal teas",
+            "Warm water with ginger",
+            "Soft foods that do not irritate the throat"
+        ]
     },
 
     sore_throat: {
-        remedies: ["Salt water gargle", "Avoid spicy foods"],
-        foods: ["Warm liquids", "Soft foods"]
+        remedies: [
+            "Warm salt water gargling several times a day",
+            "Avoid very spicy or acidic foods",
+            "Keep throat moist by sipping fluids",
+            "Rest the voice to reduce strain"
+        ],
+        foods: [
+            "Warm liquids (soups, broths)",
+            "Soft foods like porridge or mashed vegetables",
+            "Honey with warm water",
+            "Non-acidic fruits"
+        ]
     }
 }
+
 
 // ---------------- MEDICINES ----------------
 
