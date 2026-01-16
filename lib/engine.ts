@@ -14,11 +14,26 @@ function calculateBalancedDose(baseDose: number, medicineCount: number): number 
 function matchConditions(symptoms: string[]) {
   return CONDITIONS
     .map(condition => {
-      const matchCount = condition.symptoms.filter(s => symptoms.includes(s)).length
-      return { ...condition, matchCount }
+      const matchCount = condition.symptoms.filter(s =>
+        symptoms.includes(s)
+      ).length
+
+      const matchRatio = matchCount / condition.symptoms.length
+
+      return {
+        ...condition,
+        matchCount,
+        matchRatio
+      }
     })
-    .filter(c => c.matchCount >= c.minMatch)
+    .filter(c => {
+      // 🧠 Core logic
+      if (c.symptoms.length === 1) return c.matchCount === 1
+      return c.matchRatio >= 0.6 // ≥60% match
+    })
+    .sort((a, b) => b.matchRatio - a.matchRatio)
 }
+
 
 export function analyzeSymptoms(
   symptomKeys: string[],

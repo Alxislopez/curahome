@@ -38,6 +38,26 @@ export const HOME_CARE_GUIDANCE: Record<string, Guidance> = {
     ]
   },
 
+  running_nose: {
+    remedies: ["Steam inhalation", "Avoid cold exposure"],
+    foods: ["Warm fluids", "Herbal tea"]
+  },
+
+  sneezing: {
+    remedies: ["Avoid allergens", "Steam inhalation"],
+    foods: ["Warm water", "Vitamin C rich fruits"]
+  },
+
+  dry_cough: {
+    remedies: ["Honey before sleep", "Warm fluids", "Avoid smoke"],
+    foods: ["Honey water", "Warm milk"]
+  },
+
+  wet_cough: {
+    remedies: ["Steam inhalation", "Chest percussion"],
+    foods: ["Warm ginger tea", "Light soups"]
+  },
+
   cough: {
     remedies: [
       "Steam inhalation",
@@ -50,6 +70,28 @@ export const HOME_CARE_GUIDANCE: Record<string, Guidance> = {
       "Herbal teas",
       "Warm ginger water",
       "Soft foods"
+    ]
+  },
+
+  chest_congestion: {
+    remedies: ["Steam inhalation", "Warm compress on chest"],
+    foods: ["Warm fluids", "Pepper soup"]
+  },
+
+  body_pain: {
+    remedies: ["Rest", "Warm bath"],
+    foods: ["Turmeric milk", "Protein rich foods"]
+  },
+
+  back_pain: {
+    remedies: [
+      "Hot water bag",
+      "Gentle stretching exercises"
+    ],
+    foods: [
+      "Warm milk",
+      "Turmeric milk",
+      "Magnesium-rich foods (banana, nuts)"
     ]
   },
 
@@ -66,6 +108,39 @@ export const HOME_CARE_GUIDANCE: Record<string, Guidance> = {
       "Honey water",
       "Mashed vegetables"
     ]
+  },
+
+  fatigue: {
+    remedies: ["Adequate sleep", "Limit physical exertion"],
+    foods: ["Fruits", "Warm milk"]
+  },
+
+  weakness: {
+    remedies: [
+      "ORS or coconut water",
+      "Adequate rest"
+    ],
+    foods: [
+      "Banana",
+      "Curd",
+      "Rice",
+      "Coconut water"
+    ]
+  },
+
+  dizziness: {
+    remedies: ["Sit or lie down", "Hydration"],
+    foods: ["Salted lemon water", "Fruits"]
+  },
+
+  nausea: {
+    remedies: ["Small sips of water", "Avoid oily food"],
+    foods: ["Ginger water", "Dry toast"]
+  },
+
+  vomiting: {
+    remedies: ["ORS in small sips", "Rest"],
+    foods: ["ORS", "Rice water"]
   },
 
   diarrhea: {
@@ -92,6 +167,97 @@ export const HOME_CARE_GUIDANCE: Record<string, Guidance> = {
       "Warm water",
       "Soft cooked rice",
       "Boiled vegetables"
+    ]
+  },
+
+  acid_reflux: {
+    remedies: [
+      "Cold milk",
+      "Avoid spicy and oily foods"
+    ],
+    foods: [
+      "Oats",
+      "Banana",
+      "Rice porridge",
+      "Curd (if tolerated)"
+    ]
+  },
+
+  indigestion: {
+    remedies: ["Jeera water", "Avoid spicy food"],
+    foods: ["Light meals", "Warm water"]
+  },
+
+  gas: {
+    remedies: ["Ajwain water", "Gentle walking"],
+    foods: ["Warm water", "Avoid beans & cabbage"]
+  },
+
+  bloating: {
+    remedies: ["Fennel seeds (saunf)", "Gentle walking"],
+    foods: ["Warm water", "Papaya", "Cooked vegetables"]
+  },
+
+  constipation: {
+    remedies: ["Increase fluid intake", "Morning warm water"],
+    foods: ["Fruits", "High fiber foods"]
+  },
+
+  tooth_pain: {
+    remedies: [
+      "Salt water rinse",
+      "Clove oil (temporary relief)"
+    ],
+    foods: [
+      "Soft foods",
+      "Warm soups",
+      "Avoid sweets and cold foods"
+    ]
+  },
+
+  skin_irritation: {
+    remedies: [
+      "Aloe vera gel",
+      "Coconut oil application"
+    ],
+    foods: [
+      "Coconut water",
+      "Hydrating fruits"
+    ]
+  },
+
+  acne: {
+    remedies: [
+      "Aloe vera application",
+      "Multani mitti face pack"
+    ],
+    foods: [
+      "Fruits and vegetables",
+      "Plenty of water",
+      "Avoid oily foods"
+    ]
+  },
+
+  dandruff: {
+    remedies: [
+      "Curd with lemon scalp pack",
+      "Regular hair wash"
+    ],
+    foods: [
+      "Protein-rich foods",
+      "Nuts and seeds"
+    ]
+  },
+
+  hairfall: {
+    remedies: [
+      "Onion juice scalp massage",
+      "Coconut oil massage"
+    ],
+    foods: [
+      "Eggs",
+      "Green leafy vegetables",
+      "Nuts"
     ]
   },
 
@@ -123,7 +289,13 @@ export type Medicine = {
 export const FIRST_LINE_MEDICINES: Medicine[] = [
   {
     name: "Paracetamol",
-    forSymptoms: ["fever", "body_pain", "menstrual_cramps"],
+    forSymptoms: [
+      "fever",
+      "body_pain",
+      "back_pain",
+      "tooth_pain",
+      "menstrual_cramps"
+    ],
     standardDoseMg: 500,
     maxDailyDoseMg: 3000,
     frequency: "Every 6–8 hours",
@@ -132,7 +304,7 @@ export const FIRST_LINE_MEDICINES: Medicine[] = [
 
   {
     name: "Ibuprofen",
-    forSymptoms: ["body_pain", "menstrual_cramps"],
+    forSymptoms: ["body_pain", "back_pain", "menstrual_cramps"],
     standardDoseMg: 400,
     maxDailyDoseMg: 1200,
     frequency: "Every 8 hours",
@@ -141,7 +313,12 @@ export const FIRST_LINE_MEDICINES: Medicine[] = [
 
   {
     name: "Cetirizine",
-    forSymptoms: ["cold", "sneezing", "running_nose"],
+    forSymptoms: [
+      "cold",
+      "sneezing",
+      "running_nose",
+      "skin_irritation"
+    ],
     standardDoseMg: 10,
     maxDailyDoseMg: 10,
     frequency: "Once daily (night)",
@@ -158,8 +335,26 @@ export const FIRST_LINE_MEDICINES: Medicine[] = [
   },
 
   {
+    name: "Antacid",
+    forSymptoms: ["acid_reflux", "indigestion"],
+    standardDoseMg: 0,
+    maxDailyDoseMg: 0,
+    frequency: "After meals",
+    notes: "Avoid lying down immediately after eating"
+  },
+
+  {
+    name: "Simethicone",
+    forSymptoms: ["gas", "bloating"],
+    standardDoseMg: 80,
+    maxDailyDoseMg: 500,
+    frequency: "After meals",
+    notes: "Relieves gas and bloating"
+  },
+
+  {
     name: "ORS",
-    forSymptoms: ["diarrhea", "vomiting"],
+    forSymptoms: ["diarrhea", "vomiting", "weakness"],
     standardDoseMg: 0,
     maxDailyDoseMg: 0,
     frequency: "Frequent sips",

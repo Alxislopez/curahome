@@ -8,8 +8,8 @@ import SeverityBadge from "../components/severitybadge"
 
 const SYMPTOMS = [
   { key: "fever", label: "Fever" },
-  { key: "throat_pain", label: "Throat Pain" },
   { key: "sore_throat", label: "Sore Throat" },
+   { key: "headache", label: "headache" },
   { key: "cold", label: "Cold" },
   { key: "running_nose", label: "Running Nose" },
   { key: "sneezing", label: "Sneezing" },
@@ -269,6 +269,23 @@ function tryAutoTokenize(value: string) {
 
       {result && (
         <Card>
+            {result.conditions?.length === 0 && (
+  <p className="text-muted">
+    No exact condition match found for the selected symptoms.
+  </p>
+)}
+            {result.conditions?.length > 0 && (
+  <>
+    <h4>Possible Conditions</h4>
+    <ul>
+      {result.conditions.map((c: string, i: number) => (
+        <li key={i}>{c}</li>
+      ))}
+    </ul>
+    <hr />
+  </>
+)}
+
           <SeverityBadge severity={result.severity} />
           <p>{result.recommendation}</p>
 

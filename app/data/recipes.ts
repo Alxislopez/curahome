@@ -15,13 +15,7 @@ export const RECIPES: Recipe[] = [
     name: "Clear Vegetable Soup",
     category: "Light soups",
     recommendedFor: ["fever", "cold", "sore_throat"],
-    ingredients: [
-      "Carrot",
-      "Potato",
-      "Beans",
-      "Salt",
-      "Water"
-    ],
+    ingredients: ["Carrot", "Potato", "Beans", "Salt", "Water"],
     steps: [
       "Wash and chop vegetables.",
       "Boil vegetables in water.",
@@ -35,11 +29,7 @@ export const RECIPES: Recipe[] = [
     name: "Ginger Herbal Tea",
     category: "Warm fluids",
     recommendedFor: ["cold", "cough"],
-    ingredients: [
-      "Fresh ginger",
-      "Water",
-      "Honey (optional)"
-    ],
+    ingredients: ["Fresh ginger", "Water", "Honey (optional)"],
     steps: [
       "Boil crushed ginger in water.",
       "Strain into cup.",
@@ -52,10 +42,7 @@ export const RECIPES: Recipe[] = [
     name: "Banana & Rice Meal",
     category: "Easily digestible foods",
     recommendedFor: ["diarrhea", "stomach_pain"],
-    ingredients: [
-      "Cooked rice",
-      "Ripe banana"
-    ],
+    ingredients: ["Cooked rice", "Ripe banana"],
     steps: [
       "Cook rice until soft.",
       "Serve with sliced banana."
@@ -67,11 +54,7 @@ export const RECIPES: Recipe[] = [
     name: "Curd Rice",
     category: "Gut friendly foods",
     recommendedFor: ["diarrhea", "indigestion"],
-    ingredients: [
-      "Cooked rice",
-      "Fresh curd",
-      "Salt"
-    ],
+    ingredients: ["Cooked rice", "Fresh curd", "Salt"],
     steps: [
       "Mix cooked rice with curd.",
       "Add salt lightly.",
@@ -84,16 +67,157 @@ export const RECIPES: Recipe[] = [
     name: "Warm Milk",
     category: "Soothing foods",
     recommendedFor: ["fatigue", "weakness"],
-    ingredients: [
-      "Milk"
-    ],
+    ingredients: ["Milk"],
     steps: [
       "Warm milk gently.",
       "Drink before bedtime."
     ]
   },
 
-   {
+  {
+    id: "turmeric-milk",
+    name: "Turmeric Milk",
+    category: "Recovery Drink",
+    recommendedFor: ["body_pain", "back_pain", "menstrual_cramps"],
+    ingredients: ["Milk – 1 cup", "Turmeric powder – ½ teaspoon"],
+    steps: [
+      "Heat milk until warm.",
+      "Add turmeric powder.",
+      "Mix well and drink."
+    ]
+  },
+
+  {
+    id: "ajwain-water",
+    name: "Ajwain Water",
+    category: "Digestive Remedy",
+    recommendedFor: ["gas", "bloating"],
+    ingredients: ["Ajwain – 1 teaspoon", "Water – 1 cup"],
+    steps: [
+      "Boil water.",
+      "Add ajwain seeds.",
+      "Boil for 5 minutes.",
+      "Strain and drink warm."
+    ]
+  },
+
+  {
+    id: "jeera-water",
+    name: "Jeera Water",
+    category: "Digestive Remedy",
+    recommendedFor: ["indigestion", "bloating", "acid_reflux"],
+    ingredients: ["Jeera – 1 teaspoon", "Water – 1 cup"],
+    steps: [
+      "Boil water.",
+      "Add jeera.",
+      "Simmer for 5 minutes.",
+      "Strain and drink."
+    ]
+  },
+
+  {
+    id: "ors-home",
+    name: "ORS (Homemade)",
+    category: "Hydration",
+    recommendedFor: ["diarrhea", "vomiting", "weakness"],
+    ingredients: [
+      "Water – 1 litre",
+      "Sugar – 6 teaspoons",
+      "Salt – ½ teaspoon"
+    ],
+    steps: [
+      "Mix all ingredients well.",
+      "Sip small amounts frequently."
+    ]
+  },
+
+  {
+    id: "ginger-water",
+    name: "Ginger Water",
+    category: "Digestive Drink",
+    recommendedFor: ["nausea", "indigestion"],
+    ingredients: ["Fresh ginger – ½ inch", "Water – 2 cups"],
+    steps: [
+      "Boil water with ginger.",
+      "Simmer 10 minutes.",
+      "Strain and sip."
+    ]
+  },
+
+  {
+    id: "warm-honey-water",
+    name: "Warm Honey Water",
+    category: "Soothing Drink",
+    recommendedFor: ["throat_pain", "dry_cough"],
+    ingredients: ["Honey – 1 tsp", "Warm water – 1 cup"],
+    steps: [
+      "Mix honey in warm water.",
+      "Sip slowly."
+    ]
+  },
+
+  /* ================= NEWLY ADDED ================= */
+
+  {
+    id: "fennel-water",
+    name: "Fennel (Saunf) Water",
+    category: "Digestive Relief",
+    recommendedFor: ["bloating", "gas"],
+    ingredients: ["Fennel seeds – 1 tsp", "Water – 1 cup"],
+    steps: [
+      "Soak fennel seeds overnight.",
+      "Strain and drink in the morning."
+    ]
+  },
+
+  {
+    id: "cold-milk",
+    name: "Cold Milk",
+    category: "Acid Relief",
+    recommendedFor: ["acid_reflux"],
+    ingredients: ["Cold milk – 1 cup"],
+    steps: [
+      "Drink cold milk slowly.",
+      "Avoid adding sugar."
+    ]
+  },
+
+  {
+    id: "salt-water-rinse",
+    name: "Salt Water Rinse",
+    category: "Oral Care",
+    recommendedFor: ["tooth_pain"],
+    ingredients: ["Warm water – 1 cup", "Salt – ½ tsp"],
+    steps: [
+      "Mix salt in warm water.",
+      "Rinse mouth for 30 seconds."
+    ]
+  },
+
+  {
+    id: "aloe-vera-drink",
+    name: "Aloe Vera Drink",
+    category: "Skin Care",
+    recommendedFor: ["skin_irritation", "acne"],
+    ingredients: ["Fresh aloe vera gel – 1 tbsp", "Water – 1 cup"],
+    steps: [
+      "Mix aloe gel with water.",
+      "Drink once daily."
+    ]
+  },
+
+  {
+    id: "neem-water",
+    name: "Neem Water",
+    category: "Skin & Hair Care",
+    recommendedFor: ["acne", "dandruff"],
+    ingredients: ["Neem leaves – few", "Water – 1 cup"],
+    steps: [
+      "Boil neem leaves in water.",
+      "Cool and use for drinking or hair rinse."
+    ]
+  },
+{
     id: "ginger-tulsi-tea",
     name: "Ginger Tulsi Tea",
     category: "Immunity Booster",
@@ -110,94 +234,7 @@ export const RECIPES: Recipe[] = [
       "Simmer for 5–7 minutes.",
       "Strain and add honey if desired."
     ]
-  },
-
-  {
-    id: "turmeric-milk",
-    name: "Turmeric Milk",
-    category: "Recovery Drink",
-    recommendedFor: ["fever", "body_pain", "fatigue", "joint_pain"],
-    ingredients: [
-      "Milk – 1 cup",
-      "Turmeric powder – ½ teaspoon"
-    ],
-    steps: [
-      "Heat milk until warm.",
-      "Add turmeric powder.",
-      "Mix well and drink before bedtime."
-    ]
-  },
-
-  {
-    id: "ajwain-water",
-    name: "Ajwain Water",
-    category: "Digestive Remedy",
-    recommendedFor: ["gas", "stomach_pain", "bloating"],
-    ingredients: [
-      "Ajwain – 1 teaspoon",
-      "Water – 1 cup"
-    ],
-    steps: [
-      "Boil water.",
-      "Add ajwain seeds.",
-      "Boil for 5 minutes.",
-      "Strain and drink warm."
-    ]
-  },
-
-  {
-    id: "jeera-water",
-    name: "Jeera Water",
-    category: "Digestive Remedy",
-    recommendedFor: ["indigestion", "bloating", "gas"],
-    ingredients: [
-      "Jeera (cumin seeds) – 1 teaspoon",
-      "Water – 1 cup"
-    ],
-    steps: [
-      "Boil water.",
-      "Add jeera seeds.",
-      "Simmer for 5–10 minutes.",
-      "Strain and drink warm."
-    ]
-  },
-
-  {
-    id: "ors-home",
-    name: "ORS (Oral Rehydration Solution)",
-    category: "Hydration",
-    recommendedFor: ["diarrhea", "vomiting", "weakness", "dehydration"],
-    ingredients: [
-      "Clean drinking water – 1 litre",
-      "Sugar – 6 level teaspoons",
-      "Salt – ½ level teaspoon"
-    ],
-    steps: [
-      "Take boiled and cooled water.",
-      "Add sugar and salt.",
-      "Stir well until dissolved.",
-      "Sip small amounts every 5–10 minutes."
-    ]
-  },
-
-  {
-    id: "ginger-water",
-    name: "Ginger Water",
-    category: "Digestive Drink",
-    recommendedFor: ["nausea", "vomiting", "indigestion"],
-    ingredients: [
-      "Fresh ginger – ½ inch",
-      "Water – 1–2 cups"
-    ],
-    steps: [
-      "Boil water.",
-      "Add sliced ginger.",
-      "Simmer for 10 minutes.",
-      "Strain and sip slowly."
-    ]
-  },
-
-  {
+  },                                            {
     id: "lemon-water",
     name: "Warm Lemon Water",
     category: "Digestive Drink",
@@ -211,9 +248,8 @@ export const RECIPES: Recipe[] = [
       "Add lemon juice.",
       "Sip slowly."
     ]
-  },
-
-  {
+  },  
+   {
     id: "salted-lemon-water",
     name: "Salted Lemon Water",
     category: "Electrolyte Drink",
@@ -227,6 +263,21 @@ export const RECIPES: Recipe[] = [
       "Add lemon juice and salt to water.",
       "Mix well.",
       "Drink slowly."
+    ]
+  },
+  {
+    id: "Curd+lemon",
+    name: "Curd+lemon",
+    category: "haircare",
+    recommendedFor: ["dandruff"],
+    ingredients: [
+      "Lemon juice – 7 tablespoon",
+      "curd – 1 cup"
+    ],
+    steps: [
+      "Add lemon juice and curd together.",
+      "Mix well.",
+      "apply 30 min before head bath"
     ]
   },
 
@@ -282,38 +333,16 @@ export const RECIPES: Recipe[] = [
       "Strain and drink warm."
     ]
   },
-
-   {
-    id: "ors",
-    name: "ORS (Oral Rehydration Solution)",
-    category: "Hydration",
-    recommendedFor: ["diarrhea", "vomiting", "weakness", "dehydration"],
-    ingredients: [
-      "Clean drinking water – 1 litre",
-      "Sugar – 6 level teaspoons",
-      "Salt – ½ level teaspoon"
-    ],
-    steps: [
-      "Take boiled and cooled water.",
-      "Add sugar and salt.",
-      "Mix until fully dissolved.",
-      "Sip every 5–10 minutes."
-    ]
-  },
-
   {
-    id: "warm-honey-water",
-    name: "Warm Honey Water",
-    category: "Soothing Drink",
-    recommendedFor: ["throat_pain", "dry_cough"],
-    ingredients: [
-      "Honey – 1 teaspoon",
-      "Warm water – 1 cup"
-    ],
+    id: "onion-oil",
+    name: "Onion Oil Massage",
+    category: "Hair Care",
+    recommendedFor: ["hairfall"],
+    ingredients: ["Onion juice – 2 tbsp", "Coconut oil – 2 tbsp"],
     steps: [
-      "Warm the water (do not boil).",
-      "Add honey.",
-      "Sip slowly."
+      "Mix onion juice with oil.",
+      "Massage scalp gently.",
+      "Wash after 30 minutes."
     ]
   }
 ]
