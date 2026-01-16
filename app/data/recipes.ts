@@ -28,7 +28,7 @@ export const RECIPES: Recipe[] = [
     id: "ginger-tea",
     name: "Ginger Herbal Tea",
     category: "Warm fluids",
-    recommendedFor: ["cold", "cough"],
+    recommendedFor: ["cold", "cough", "menstrual_cramps"],
     ingredients: ["Fresh ginger", "Water", "Honey (optional)"],
     steps: [
       "Boil crushed ginger in water.",
@@ -320,7 +320,7 @@ export const RECIPES: Recipe[] = [
     id: "chamomile-tea",
     name: "Chamomile Tea",
     category: "Relaxation Tea",
-    recommendedFor: ["anxiety", "bloating", "sleep_issues"],
+    recommendedFor: ["anxiety", "bloating", "sleep_issues", "menstrual_cramps"],
     ingredients: [
       "Chamomile tea bag or flowers – 1 teaspoon",
       "Water – 1 cup",
