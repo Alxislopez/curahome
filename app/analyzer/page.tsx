@@ -263,8 +263,9 @@ function tryAutoTokenize(value: string) {
           <hr />
 
           <p className="text-muted">
-            <strong>Medical Disclaimer:</strong> Not a medical diagnosis.
-          </p>
+           <strong>Medical Disclaimer:</strong> This application provides general
+  guidance based on self-reported symptoms. It is not a medical diagnosis
+  and does not replace professional medical advice.</p>
 
           <div className="actions">
             <button onClick={generatePDF}>Download PDF Report</button>
