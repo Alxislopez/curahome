@@ -41,7 +41,7 @@ export default function RecipesClient() {
             </Link>
 
             <Card>
-                <h1>Recommended Foods & Recipes</h1>
+                <h1><strong>Recommended Foods & Recipes</strong></h1>
                 <p className="text-muted" style={{ marginBottom: 24 }}>
                     Discover nutritious recipes tailored to support your recovery and well-being.
                 </p>
@@ -74,22 +74,22 @@ export default function RecipesClient() {
                             setOpenId(openId === recipe.id ? null : recipe.id)
                         }
                     >
-                        <h3 style={{ marginBottom: 4 }}>{recipe.name}</h3>
+                        <h3 style={{ marginBottom: 4 }}><strong>{recipe.name}</strong></h3>
                         <small>
-                            {recipe.category} • Helps with: {recipe.recommendedFor.join(", ")}
+                            {recipe.category} • Helps with: <strong>{recipe.recommendedFor.join(", ")}</strong>
                         </small>
                     </div>
 
                     {openId === recipe.id && (
                         <div style={{ marginTop: 16 }}>
-                            <h4>Ingredients</h4>
+                            <h4><strong>Ingredients</strong></h4>
                             <ul>
                                 {recipe.ingredients.map((i, idx) => (
                                     <li key={idx}>{i}</li>
                                 ))}
                             </ul>
 
-                            <h4>Preparation</h4>
+                            <h4><strong>Preparation</strong></h4>
                             <ol>
                                 {recipe.steps.map((s, idx) => (
                                     <li key={idx}>{s}</li>

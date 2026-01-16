@@ -270,13 +270,13 @@ function tryAutoTokenize(value: string) {
       {result && (
         <Card>
             {result.conditions?.length === 0 && (
-  <p className="text-muted">
+  <p className="wtext-muted">
     No exact condition match found for the selected symptoms.
   </p>
 )}
             {result.conditions?.length > 0 && (
   <>
-    <h4>Possible Conditions</h4>
+    <h4><strong>Possible Conditions </strong></h4>
     <ul>
       {result.conditions.map((c: string, i: number) => (
         <li key={i}>{c}</li>
@@ -291,17 +291,17 @@ function tryAutoTokenize(value: string) {
 
           {result.allowHomeCare && (
             <>
-              <h4>Home Remedies</h4>
+              <h4><strong>Home Remedies</strong></h4>
               <ul>{result.remedies?.map((r: string, i: number) => <li key={i}>{r}</li>)}</ul>
 
-              <h4>Recommended Foods</h4>
+              <h4><strong>Recommended Foods</strong></h4>
               <ul>{result.foods?.map((f: string, i: number) => <li key={i}>{f}</li>)}</ul>
             </>
           )}
 
           {result.medicines?.length > 0 && (
             <>
-              <h4>First-line Medicines</h4>
+              <h4><strong>First-line Medicines</strong></h4>
               <ul>
                 {result.medicines.map((m: any, i: number) => (
                   <li key={i}>
