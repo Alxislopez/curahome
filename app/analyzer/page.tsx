@@ -74,6 +74,22 @@ export default function Home() {
     setSearch("")
     setResult(null)
   }
+function tryAutoTokenize(value: string) {
+  const cleaned = value.trim().toLowerCase()
+  if (!cleaned) return false
+
+  const match = SYMPTOMS.find(
+    s => s.label.toLowerCase() === cleaned
+  )
+
+  if (match && !selected.includes(match.key)) {
+    setSelected(prev => [...prev, match.key])
+    setSearch("")
+    return true
+  }
+
+  return false
+}
 
   async function analyze() {
     setLoading(true)
@@ -178,11 +194,19 @@ export default function Home() {
             </span>
           ))}
 
-          <input
-            value={search}
-            onChange={e => setSearch(e.target.value)}
-            placeholder="Search or type symptom..."
-          />
+         <input
+  value={search}
+  onChange={e => setSearch(e.target.value)}
+  placeholder="Search or type symptom..."
+  onKeyDown={e => {
+    if (["Enter", ",", " "].includes(e.key)) {
+      e.preventDefault()
+      tryAutoTokenize(search)
+    }
+  }}
+  onBlur={() => tryAutoTokenize(search)}
+/>
+
         </div>
 
         {/* AVAILABLE TOKENS */}
