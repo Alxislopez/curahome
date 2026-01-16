@@ -87,7 +87,10 @@ button,
   background: #9cc677ff;
   color: #fff;
 }
-
+.button-a{
+  background: #335cadff;
+  color: #fff;
+}
 .button-primary:hover {
   background: #a77342ff;
 }
