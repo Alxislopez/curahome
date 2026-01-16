@@ -260,10 +260,10 @@ function tryAutoTokenize(value: string) {
 
 
         <div className="actions">
-          <button onClick={analyze} disabled={!selected.length || loading}>
+          <button className="button-a" onClick={analyze} disabled={!selected.length || loading}>
             {loading ? "Analyzing..." : "Analyze Symptoms"}
           </button>
-          <button onClick={reset} className="secondary">Reset</button>
+          <button className="button-a" onClick={reset} className="secondary">Reset</button>
         </div>
       </Card>
 
