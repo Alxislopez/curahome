@@ -66,7 +66,7 @@ export default function Home() {
               Analyze your symptoms and get safe home-care guidance in minutes.
             </p>
 
-            <p className="text-muted">Takes less than 2 minutes</p>
+            <p className="text-muted"><strong>Takes less than 2 minutes</strong></p>
 
             <div
               style={{

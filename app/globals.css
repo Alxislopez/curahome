@@ -5,7 +5,7 @@
    ======================================== */
 
 :root {
-  --color-primary: #0a317fff;
+  --color-primary: rgb(204, 57, 140);
   --color-success: #16a34a;
   --color-warning: #f59e0b;
   --color-danger: #dc2626;
@@ -56,14 +56,35 @@ body {
    ======================================== */
 
 .card {
-  background: var(--color-card);
-  border-radius: var(--card-radius);
-  backdrop-filter: blur(6px);
-  padding: 28px;
+  position: relative;
+
+  /* TRUE glass background */
+  background: rgba(25, 68, 25, 0.75);
+
+  border-radius: 28px;
+
+  /* Stronger blur */
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+
+  /* Inner spacing */
+  padding: clamp(28px, 4vw, 64px);
+
+  /* Soft glow + depth */
   box-shadow:
-    0 10px 30px rgba(0, 0, 0, 0.08),
-    0 2px 6px rgba(0, 0, 0, 0.04);
+    0 30px 60px rgba(0, 0, 0, 0.35),
+    inset 0 1px 1px rgba(255, 255, 255, 0.12);
+
+  border: 1px solid rgba(255, 255, 255, 0.15);
+
+  z-index: 10;
 }
+
+.container>.card+.card {
+  margin-top: 40px;
+}
+
+
 
 /* ========================================
    BUTTONS
@@ -99,13 +120,13 @@ button,
 }
 
 .button-secondary {
-  background: #8dd1e4ff;
+  background: rgb(212, 190, 117);
   color: var(--color-text);
   border: 1px solid var(--color-border);
 }
 
 .button-secondary:hover {
-  background: #b284d7ff;
+  background: rgb(223, 146, 58);
 }
 
 /* ========================================
@@ -166,13 +187,16 @@ select:focus {
 
 /* Suggestions */
 .token.selectable {
-  background: #96bfe8ff;
+  background: rgb(160, 88, 205);
   color: var(--color-text);
   cursor: pointer;
 }
 
 .token.selectable:hover {
-  background: #0a317fff;
+  background: rgba(161, 20, 133, 0.65);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+
   color: white;
 }
 
@@ -213,7 +237,7 @@ select:focus {
 }
 
 .wtext-muted {
-  color: grey;
+  color: rgb(255, 255, 255);
 }
 
 .text-center {
@@ -282,4 +306,90 @@ select:focus {
 .polished:hover {
   transform: translateY(-4px);
   box-shadow: 0 50px 90px rgba(242, 172, 9, 0.6);
+}
+
+/* ========================================
+   MOBILE GLASS TUNING
+   ======================================== */
+
+@media (max-width: 640px) {
+  .card {
+    /* Reduce blur for mobile GPU performance */
+    backdrop-filter: blur(10px) saturate(120%);
+    -webkit-backdrop-filter: blur(10px) saturate(120%);
+
+    /* Slightly stronger opacity for readability */
+    background: rgba(25, 68, 25, 0.82);
+
+    /* Comfortable mobile padding */
+    padding: 24px 22px;
+
+    /* Smaller radius feels better on phones */
+    border-radius: 22px;
+
+    /* Softer shadow (mobile screens exaggerate shadows) */
+    box-shadow:
+      0 20px 40px rgba(0, 0, 0, 0.35),
+      inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  }
+
+  /* Card spacing */
+  .card+.card {
+    margin-top: 28px;
+  }
+}
+
+@media (max-width: 640px) {
+  .actions {
+    gap: 16px;
+  }
+
+  .token-list {
+    gap: 12px;
+  }
+
+  .token {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 640px) {
+
+  button,
+  .button {
+    height: 48px;
+    font-size: 15px;
+    padding: 0 20px;
+  }
+}
+
+@media (max-width: 640px) {
+
+  button,
+  .button {
+    height: 48px;
+    font-size: 15px;
+    padding: 0 20px;
+  }
+}
+
+@media (max-width: 640px) {
+
+  .home-bg,
+  .ana-bg {
+    filter: blur(2px);
+    opacity: 0.7;
+  }
+}
+
+@media (max-width: 640px) {
+  .card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    pointer-events: none;
+  }
 }
