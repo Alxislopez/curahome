@@ -48,7 +48,7 @@ export default function Home() {
           }}
         >
           {/* LOGO */}
-          <div className="logo-glow">
+          <div className="hero-logo">
             <Image
               src="/logo.png"
               alt="CuraHome"
