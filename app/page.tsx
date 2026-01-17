@@ -61,12 +61,11 @@ export default function Home() {
           {/* CONTENT */}
           <div>
             <h1 style={{ color: "white", fontFamily: "monospace", fontSize: 32, fontWeight: 700, marginBottom: 12, }}>CuraHome</h1>
-
+            <h2 style={{ color: "white", fontFamily: "monospace" }}>"Gentle home remedies made simple"</h2>
             <p className="text-muted">
               Analyze your symptoms and get safe home-care guidance in minutes.
             </p>
 
-            <p className="text-muted"><strong>Takes less than 2 minutes</strong></p>
 
             <div
               style={{
@@ -81,6 +80,7 @@ export default function Home() {
                   Start Symptom Analysis
                 </button>
               </Link>
+              <p className="text-muted"><strong>Takes less than 2 minutes</strong></p>
 
               <Link href="/recipes">
                 <button className="button-secondary">

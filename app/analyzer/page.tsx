@@ -322,9 +322,9 @@ export default function Home() {
             and does not replace professional medical advice.</p>
 
           <div className="actions">
-            <button onClick={generatePDF}>Download PDF Report</button>
+            <button className="button-a" onClick={generatePDF}>Download PDF Report</button>
             <button
-              className="secondary"
+              className="button-a"
               onClick={() => window.location.href = `/recipes?symptoms=${selected.join(",")}`}
             >
               View Recommended Recipes
