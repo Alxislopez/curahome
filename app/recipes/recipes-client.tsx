@@ -36,6 +36,7 @@ export default function RecipesClient() {
 
     return (
         <main className="container">
+            <div className="home-bg" />
             <Link href="/analyzer" style={{ fontSize: 14, display: "inline-block", marginBottom: 16 }}>
                 ← Back to Analyzer
             </Link>

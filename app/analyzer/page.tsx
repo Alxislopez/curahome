@@ -9,7 +9,7 @@ import SeverityBadge from "../components/severitybadge"
 const SYMPTOMS = [
   { key: "fever", label: "Fever" },
   { key: "sore_throat", label: "Sore Throat" },
-   { key: "headache", label: "headache" },
+  { key: "headache", label: "headache" },
   { key: "cold", label: "Cold" },
   { key: "running_nose", label: "Running Nose" },
   { key: "sneezing", label: "Sneezing" },
@@ -49,16 +49,16 @@ export default function Home() {
   const [search, setSearch] = useState("")
   const [result, setResult] = useState<any>(null)
   const [loading, setLoading] = useState(false)
-const [highlighted, setHighlighted] = useState(0)
+  const [highlighted, setHighlighted] = useState(0)
 
   const availableSymptoms = useMemo(() => {
-  setHighlighted(0)
-  return SYMPTOMS.filter(
-    s =>
-      !selected.includes(s.key) &&
-      s.label.toLowerCase().includes(search.toLowerCase())
-  )
-}, [search, selected])
+    setHighlighted(0)
+    return SYMPTOMS.filter(
+      s =>
+        !selected.includes(s.key) &&
+        s.label.toLowerCase().includes(search.toLowerCase())
+    )
+  }, [search, selected])
 
 
   const addSymptom = (key: string) => {
@@ -77,32 +77,32 @@ const [highlighted, setHighlighted] = useState(0)
     setSearch("")
     setResult(null)
   }
-function tryAutoTokenize(value: string) {
-  const cleaned = value.trim().toLowerCase()
-  if (!cleaned) return false
+  function tryAutoTokenize(value: string) {
+    const cleaned = value.trim().toLowerCase()
+    if (!cleaned) return false
 
-  // 1️⃣ Exact match
-  const exact = SYMPTOMS.find(
-    s => s.label.toLowerCase() === cleaned
-  )
+    // 1️⃣ Exact match
+    const exact = SYMPTOMS.find(
+      s => s.label.toLowerCase() === cleaned
+    )
 
-  if (exact && !selected.includes(exact.key)) {
-    setSelected(prev => [...prev, exact.key])
-    setSearch("")
-    return true
+    if (exact && !selected.includes(exact.key)) {
+      setSelected(prev => [...prev, exact.key])
+      setSearch("")
+      return true
+    }
+
+    // 2️⃣ Partial match → pick first suggestion
+    const partial = availableSymptoms[0]
+
+    if (partial && !selected.includes(partial.key)) {
+      setSelected(prev => [...prev, partial.key])
+      setSearch("")
+      return true
+    }
+
+    return false
   }
-
-  // 2️⃣ Partial match → pick first suggestion
-  const partial = availableSymptoms[0]
-
-  if (partial && !selected.includes(partial.key)) {
-    setSelected(prev => [...prev, partial.key])
-    setSearch("")
-    return true
-  }
-
-  return false
-}
 
 
   async function analyze() {
@@ -181,8 +181,8 @@ function tryAutoTokenize(value: string) {
 
   return (
     <main className="container">
+      <div className="ana-bg" />
       <Link href="/">← Back to Home</Link>
-
       <Card>
         <h1>Symptom Analyzer</h1>
 
@@ -208,55 +208,55 @@ function tryAutoTokenize(value: string) {
             </span>
           ))}
 
-        <input
-  value={search}
-  placeholder="Search or type symptom..."
-  onChange={e => setSearch(e.target.value)}
-  onKeyDown={e => {
-    // ⬅ Backspace removes last token
-    if (e.key === "Backspace" && search === "" && selected.length) {
-      e.preventDefault()
-      removeSymptom(selected[selected.length - 1])
-      return
-    }
+          <input
+            value={search}
+            placeholder="Search or type symptom..."
+            onChange={e => setSearch(e.target.value)}
+            onKeyDown={e => {
+              // ⬅ Backspace removes last token
+              if (e.key === "Backspace" && search === "" && selected.length) {
+                e.preventDefault()
+                removeSymptom(selected[selected.length - 1])
+                return
+              }
 
-    // ⏎ Enter / comma / space → auto tokenize
-    if (["Enter", ",", " "].includes(e.key)) {
-      e.preventDefault()
-      tryAutoTokenize(search)
-      return
-    }
+              // ⏎ Enter / comma / space → auto tokenize
+              if (["Enter", ",", " "].includes(e.key)) {
+                e.preventDefault()
+                tryAutoTokenize(search)
+                return
+              }
 
-    // ⬇ Arrow down highlight
-    if (e.key === "ArrowDown") {
-      e.preventDefault()
-      setHighlighted(h => Math.min(h + 1, availableSymptoms.length - 1))
-    }
+              // ⬇ Arrow down highlight
+              if (e.key === "ArrowDown") {
+                e.preventDefault()
+                setHighlighted(h => Math.min(h + 1, availableSymptoms.length - 1))
+              }
 
-    // ⬆ Arrow up highlight
-    if (e.key === "ArrowUp") {
-      e.preventDefault()
-      setHighlighted(h => Math.max(h - 1, 0))
-    }
-  }}
-  onBlur={() => tryAutoTokenize(search)}
-/>
+              // ⬆ Arrow up highlight
+              if (e.key === "ArrowUp") {
+                e.preventDefault()
+                setHighlighted(h => Math.max(h - 1, 0))
+              }
+            }}
+            onBlur={() => tryAutoTokenize(search)}
+          />
 
 
         </div>
 
         {/* AVAILABLE TOKENS */}
         <div className="token-list">
-  {availableSymptoms.map((s, i) => (
-    <span
-      key={s.key}
-      className={`token selectable ${i === highlighted ? "highlighted" : ""}`}
-      onClick={() => addSymptom(s.key)}
-    >
-      {s.label}
-    </span>
-  ))}
-</div>
+          {availableSymptoms.map((s, i) => (
+            <span
+              key={s.key}
+              className={`token selectable ${i === highlighted ? "highlighted" : ""}`}
+              onClick={() => addSymptom(s.key)}
+            >
+              {s.label}
+            </span>
+          ))}
+        </div>
 
 
         <div className="actions">
@@ -269,22 +269,22 @@ function tryAutoTokenize(value: string) {
 
       {result && (
         <Card>
-            {result.conditions?.length === 0 && (
-  <p className="wtext-muted">
-    No exact condition match found for the selected symptoms.
-  </p>
-)}
-            {result.conditions?.length > 0 && (
-  <>
-    <h4><strong>Possible Conditions </strong></h4>
-    <ul>
-      {result.conditions.map((c: string, i: number) => (
-        <li key={i}>{c}</li>
-      ))}
-    </ul>
-    <hr />
-  </>
-)}
+          {result.conditions?.length === 0 && (
+            <p className="wtext-muted">
+              No exact condition match found for the selected symptoms.
+            </p>
+          )}
+          {result.conditions?.length > 0 && (
+            <>
+              <h4><strong>Possible Conditions </strong></h4>
+              <ul>
+                {result.conditions.map((c: string, i: number) => (
+                  <li key={i}>{c}</li>
+                ))}
+              </ul>
+              <hr />
+            </>
+          )}
 
           <SeverityBadge severity={result.severity} />
           <p>{result.recommendation}</p>
@@ -317,9 +317,9 @@ function tryAutoTokenize(value: string) {
           <hr />
 
           <p className="text-muted">
-           <strong>Medical Disclaimer:</strong> This application provides general
-  guidance based on self-reported symptoms. It is not a medical diagnosis
-  and does not replace professional medical advice.</p>
+            <strong>Medical Disclaimer:</strong> This application provides general
+            guidance based on self-reported symptoms. It is not a medical diagnosis
+            and does not replace professional medical advice.</p>
 
           <div className="actions">
             <button onClick={generatePDF}>Download PDF Report</button>
@@ -332,6 +332,7 @@ function tryAutoTokenize(value: string) {
           </div>
         </Card>
       )}
+
     </main>
   )
 }

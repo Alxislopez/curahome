@@ -58,6 +58,7 @@ body {
 .card {
   background: var(--color-card);
   border-radius: var(--card-radius);
+  backdrop-filter: blur(6px);
   padding: 28px;
   box-shadow:
     0 10px 30px rgba(0, 0, 0, 0.08),
@@ -87,10 +88,12 @@ button,
   background: #9cc677ff;
   color: #fff;
 }
-.button-a{
+
+.button-a {
   background: #335cadff;
   color: #fff;
 }
+
 .button-primary:hover {
   background: #a77342ff;
 }
@@ -170,7 +173,7 @@ select:focus {
 
 .token.selectable:hover {
   background: #0a317fff;
-  color:white;
+  color: white;
 }
 
 /* Highlighted suggestion */
@@ -208,6 +211,7 @@ select:focus {
 .text-muted {
   color: var(--color-text-muted);
 }
+
 .wtext-muted {
   color: grey;
 }
@@ -224,7 +228,58 @@ select:focus {
   position: fixed;
   inset: 0;
   background: url("/home-bg.png") center / cover no-repeat;
-  /* filter: blur(1px); */
-  /* opacity: 0.01; */
+  filter: blur(3px);
+  opacity: 0.75;
   z-index: -1;
+
+}
+
+.ana-bg {
+  position: fixed;
+  inset: 0;
+  background: url("/ana-bg.png") center / cover no-repeat;
+  filter: blur(3px);
+  opacity: 0.75;
+  z-index: -1;
+}
+
+@keyframes scroll-left {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes scroll-right {
+  from {
+    transform: translateX(-50%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+.animate-scroll-left {
+  animation: scroll-left 60s linear infinite;
+}
+
+.animate-scroll-right {
+  animation: scroll-right 60s linear infinite;
+}
+
+.hover\:pause-animation:hover {
+  animation-play-state: paused;
+}
+
+.polished {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.polished:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 50px 90px rgba(242, 172, 9, 0.6);
 }
