@@ -48,10 +48,11 @@ export default function Home() {
           }}
         >
           {/* LOGO */}
-          <div className="hero-logo">
+          <div className="hero-brand">
             <Image
               src="/logo.png"
               alt="CuraHome"
+              className="hero-logo"
               width={220}
               height={220}
               priority
