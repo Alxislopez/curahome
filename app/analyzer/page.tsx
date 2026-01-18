@@ -512,7 +512,7 @@ export default function Home() {
                     </li>
                   ))}
                   {result.weightUsed && (
-                    <p style={{ color: "gray" }}>
+                    <p style={{ color: "white" }}>
                       Dosage adjusted using age + weight.
                     </p>
                   )}
