@@ -489,37 +489,37 @@ export default function Home() {
 
           <SeverityBadge severity={result.severity} />
           <p>{result.recommendation}</p>
+          <div className="text-bac">
+            {result.allowHomeCare && (
+              <>
+                <h4><strong>Home Remedies</strong></h4>
+                <ul>{result.remedies?.map((r: string, i: number) => <li key={i}>{r}</li>)}</ul>
 
-          {result.allowHomeCare && (
-            <>
-              <h4><strong>Home Remedies</strong></h4>
-              <ul>{result.remedies?.map((r: string, i: number) => <li key={i}>{r}</li>)}</ul>
+                <h4><strong>Recommended Foods</strong></h4>
+                <ul>{result.foods?.map((f: string, i: number) => <li key={i}>{f}</li>)}</ul>
+              </>
+            )}
 
-              <h4><strong>Recommended Foods</strong></h4>
-              <ul>{result.foods?.map((f: string, i: number) => <li key={i}>{f}</li>)}</ul>
-            </>
-          )}
+            {result.medicines?.length > 0 && (
+              <>
+                <h4><strong>First-line Medicines</strong></h4>
+                <ul>
+                  {result.medicines.map((m: any, i: number) => (
+                    <li key={i}>
+                      <strong>{m.name}</strong> — {m.dose}
+                      <div>{m.frequency}</div>
+                      {m.notes && <small>{m.notes}</small>}
+                    </li>
+                  ))}
+                  {result.weightUsed && (
+                    <p style={{ color: "gray" }}>
+                      Dosage adjusted using age + weight.
+                    </p>
+                  )}
 
-          {result.medicines?.length > 0 && (
-            <>
-              <h4><strong>First-line Medicines</strong></h4>
-              <ul>
-                {result.medicines.map((m: any, i: number) => (
-                  <li key={i}>
-                    <strong>{m.name}</strong> — {m.dose}
-                    <div>{m.frequency}</div>
-                    {m.notes && <small>{m.notes}</small>}
-                  </li>
-                ))}
-                {result.weightUsed && (
-                  <p style={{ color: "gray" }}>
-                    Dosage adjusted using age + weight.
-                  </p>
-                )}
-
-              </ul>
-            </>
-          )}
+                </ul>
+              </>
+            )} </div>
 
           <hr />
 

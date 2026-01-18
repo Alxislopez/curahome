@@ -75,14 +75,18 @@ export default function RecipesClient() {
                             setOpenId(openId === recipe.id ? null : recipe.id)
                         }
                     >
-                        <h3 style={{ marginBottom: 4 }}><strong>{recipe.name}</strong></h3>
+                        <h3 style={{
+                            marginBottom: 4, background: "rgba(246, 248, 246, 0.214)", backdropFilter: "blur(4px)", borderRadius: "10px",
+                            padding: "10px"
+                        }}
+                        ><strong>{recipe.name}</strong></h3>
                         <small>
                             {recipe.category} • Helps with: <strong>{recipe.recommendedFor.join(", ")}</strong>
                         </small>
                     </div>
 
                     {openId === recipe.id && (
-                        <div style={{ marginTop: 16 }}>
+                        <div className="text-bac">
                             <h4><strong>Ingredients</strong></h4>
                             <ul>
                                 {recipe.ingredients.map((i, idx) => (
