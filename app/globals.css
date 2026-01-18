@@ -587,52 +587,62 @@ select:focus {
 /* ========================================
    MOBILE HOME HERO – FINAL FIX (CSS ONLY)
    ======================================== */
+/* ========================================
+   MOBILE HERO – STABLE & CONTAINED FIX
+   ======================================== */
 @media (max-width: 640px) {
 
-  /* Force vertical stacking */
-  .hero-brand {
+  /* Lock hero card layout */
+  .home-hero {
     display: flex;
-    flex-direction: column !important;
+    flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
-    gap: 8px;
-    margin-bottom: 12px;
+    text-align: center;
+    overflow: hidden;
+    /* prevents button spill */
   }
 
-  /* Center & enlarge logo */
-  .hero-logo {
+  /* Brand stack */
+  .home-hero .hero-brand {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+
+  /* Logo ABOVE title */
+  .home-hero .hero-logo {
     width: 260px;
     height: 260px;
     margin: 0 auto;
     display: block;
   }
 
-  /* Reduce app name size */
-  .hero-title {
+  /* Smaller app name */
+  .home-hero .hero-title {
     font-size: 26px;
-    font-weight: 700;
     line-height: 1.1;
-    margin-top: 4px;
-    text-align: center;
+    margin: 0;
   }
 
-  /* Pull hero card content upward */
+  /* Contain text properly */
+  .home-hero p {
+    max-width: 90%;
+    font-size: 14px;
+    line-height: 1.45;
+  }
+
+  /* Buttons stay INSIDE card */
+  .home-hero .actions,
+  .home-hero button,
+  .home-hero .button {
+    width: 100%;
+    max-width: 260px;
+  }
+
+  /* Reduce vertical padding */
   .home-hero.card {
     padding-top: 24px;
     padding-bottom: 24px;
-  }
-
-  /* Reduce paragraph text slightly */
-  .home-hero p {
-    font-size: 14px;
-    line-height: 1.4;
-  }
-
-  /* Buttons slightly smaller */
-  .home-hero button,
-  .home-hero .button {
-    height: 44px;
-    font-size: 14px;
-    padding: 0 18px;
   }
 }
