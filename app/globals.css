@@ -580,53 +580,50 @@ select:focus {
 */
 
 /* ========================================
-   MOBILE HOME HERO — FINAL FIX (CSS ONLY)
+   MOBILE HOME HERO LAYOUT FIX
+/* ========================================
+   MOBILE HOME HERO – FINAL FIX
    ======================================== */
 @media (max-width: 640px) {
 
-  /* Target ONLY home hero card */
-  .home-hero.card {
-    padding-top: 18px;
-    /* pulls everything up */
-    padding-bottom: 24px;
-  }
-
-  /* Stack logo ABOVE title */
   .hero-brand {
+    display: flex;
     flex-direction: column;
+    /* logo ABOVE text */
     align-items: center;
-    justify-content: flex-start;
-    /* IMPORTANT */
+    text-align: center;
     gap: 8px;
-    margin-bottom: 12px;
+    margin-bottom: 18px;
   }
 
-  /* Bigger logo, actually higher */
   .hero-logo {
     width: 260px;
     height: 260px;
-    margin-top: 0;
-    margin-bottom: 4px;
+    margin: 0;
   }
 
-  /* Smaller app name */
   .hero-title {
     font-size: 26px;
+    /* smaller app name */
+    font-weight: 700;
     line-height: 1.1;
-    margin-top: 0;
   }
 
-  /* Slightly reduce all text inside home hero */
-  .home-hero p {
-    font-size: 14px;
-    line-height: 1.4;
+  /* Reduce subtitle & body text slightly */
+  .card p {
+    font-size: 14.5px;
+    line-height: 1.45;
   }
 
-  /* Buttons slightly smaller */
-  .home-hero button,
-  .home-hero .button {
-    height: 42px;
+  /* Buttons more compact */
+  button,
+  .button {
+    height: 44px;
     font-size: 14px;
-    padding: 0 16px;
+    padding: 0 18px;
   }
+}
+
+.hero-logo {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
 }
