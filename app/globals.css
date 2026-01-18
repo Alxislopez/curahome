@@ -584,46 +584,55 @@ select:focus {
 /* ========================================
    MOBILE HOME HERO – FINAL FIX
    ======================================== */
+/* ========================================
+   MOBILE HOME HERO – FINAL FIX (CSS ONLY)
+   ======================================== */
 @media (max-width: 640px) {
 
+  /* Force vertical stacking */
   .hero-brand {
     display: flex;
-    flex-direction: column;
-    /* logo ABOVE text */
+    flex-direction: column !important;
     align-items: center;
-    text-align: center;
+    justify-content: flex-start;
     gap: 8px;
-    margin-bottom: 18px;
+    margin-bottom: 12px;
   }
 
+  /* Center & enlarge logo */
   .hero-logo {
     width: 260px;
     height: 260px;
-    margin: 0;
+    margin: 0 auto;
+    display: block;
   }
 
+  /* Reduce app name size */
   .hero-title {
     font-size: 26px;
-    /* smaller app name */
     font-weight: 700;
     line-height: 1.1;
+    margin-top: 4px;
+    text-align: center;
   }
 
-  /* Reduce subtitle & body text slightly */
-  .card p {
-    font-size: 14.5px;
-    line-height: 1.45;
+  /* Pull hero card content upward */
+  .home-hero.card {
+    padding-top: 24px;
+    padding-bottom: 24px;
   }
 
-  /* Buttons more compact */
-  button,
-  .button {
+  /* Reduce paragraph text slightly */
+  .home-hero p {
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  /* Buttons slightly smaller */
+  .home-hero button,
+  .home-hero .button {
     height: 44px;
     font-size: 14px;
     padding: 0 18px;
   }
-}
-
-.hero-logo {
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
 }
