@@ -416,23 +416,14 @@ select:focus {
   }
 }
 
-@media (max-width: 640px) {
-
-  button,
-  .button {
-    height: 48px;
-    font-size: 15px;
-    padding: 0 20px;
-  }
-}
 
 @media (max-width: 640px) {
 
   button,
   .button {
-    height: 48px;
-    font-size: 15px;
-    padding: 0 20px;
+    height: 44px;
+    font-size: 14px;
+    padding: 0 18px;
   }
 }
 
@@ -453,6 +444,16 @@ select:focus {
     border-radius: inherit;
     border: 1px solid rgba(255, 255, 255, 0.08);
     pointer-events: none;
+  }
+
+  .card p {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .card .text-muted,
+  .card .wtext-muted {
+    font-size: 13px;
   }
 }
 
@@ -483,22 +484,25 @@ select:focus {
     align-items: center;
     text-align: center;
     gap: 12px;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
   }
 }
+
 
 /* Mobile upgrade */
 @media (max-width: 640px) {
   .hero-logo {
-    width: 260px;
-    height: 260px;
+    width: 210px;
+    height: 210px;
+    margin-bottom: 8px;
   }
 }
 
+
 @media (max-width: 320px) {
   .hero-logo {
-    width: 260px;
-    height: 260px;
+    width: 210px;
+    height: 210px;
     margin-bottom: 6px;
   }
 }
@@ -568,7 +572,8 @@ select:focus {
 @media (max-width: 640px) {
   .hero-title {
     font-size: 28px;
+    /* was 40px */
     font-weight: 600;
-    margin-top: 4px;
+    line-height: 1.2;
   }
 }
