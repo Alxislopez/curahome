@@ -385,7 +385,7 @@ select:focus {
 
     /* Comfortable mobile padding */
     padding: 24px 22px;
-
+    padding-top: 32px;
     /* Smaller radius feels better on phones */
     border-radius: 22px;
 
@@ -417,7 +417,7 @@ select:focus {
 }
 
 
-@media (max-width: 640px) {
+/* @media (max-width: 640px) {
 
   button,
   .button {
@@ -425,7 +425,7 @@ select:focus {
     font-size: 14px;
     padding: 0 18px;
   }
-}
+} */
 
 @media (max-width: 640px) {
 
@@ -446,10 +446,10 @@ select:focus {
     pointer-events: none;
   }
 
-  .card p {
+  /* .card p {
     font-size: 14px;
     line-height: 1.5;
-  }
+  } */
 
   .card .text-muted,
   .card .wtext-muted {
@@ -478,7 +478,7 @@ select:focus {
   color: white;
 }
 
-@media (max-width: 640px) {
+/* @media (max-width: 640px) {
   .hero-brand {
     flex-direction: column;
     align-items: center;
@@ -486,26 +486,26 @@ select:focus {
     gap: 12px;
     margin-bottom: 20px;
   }
-}
+} */
 
 
 /* Mobile upgrade */
-@media (max-width: 640px) {
+/* @media (max-width: 640px) {
   .hero-logo {
     width: 210px;
     height: 210px;
     margin-bottom: 8px;
   }
-}
+} */
 
 
-@media (max-width: 320px) {
+/* @media (max-width: 320px) {
   .hero-logo {
     width: 210px;
     height: 210px;
     margin-bottom: 6px;
   }
-}
+} */
 
 .hero-title {
   font-size: 40px;
@@ -569,11 +569,61 @@ select:focus {
   margin-bottom: 8px;
 }
 
-@media (max-width: 640px) {
+/* @media (max-width: 640px) {
   .hero-title {
     font-size: 28px;
-    /* was 40px */
+    
     font-weight: 600;
     line-height: 1.2;
+  }
+}
+*/
+
+/* ========================================
+   MOBILE HOME HERO LAYOUT FIX
+   ======================================== */
+@media (max-width: 640px) {
+
+  .hero-brand {
+    flex-direction: column;
+    /* STACK logo above text */
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+    /* tighter spacing */
+    margin-bottom: 14px;
+  }
+
+  .hero-logo {
+    width: 260px;
+    /* BIG logo */
+    height: 260px;
+    margin-bottom: 6px;
+  }
+
+  .hero-title {
+    font-size: 28px;
+    /* smaller app name */
+    font-weight: 700;
+    line-height: 1.1;
+  }
+
+  /* Optional: tighten subtitle text */
+  .hero-subtitle {
+    font-size: 15px;
+    line-height: 1.4;
+  }
+
+  /* Reduce body text slightly */
+  .card p {
+    font-size: 15px;
+  }
+
+  /* Buttons slightly smaller */
+  button,
+  .button {
+    height: 44px;
+    font-size: 14px;
+    padding: 0 18px;
   }
 }
