@@ -35,9 +35,7 @@ export default function Home() {
         <Card
           className="polished"
           style={{
-            display: "flex",
-            gap: 32,
-            padding: "48px 64px",
+
             background: "rgba(25, 68, 25, 0.95)",
             backdropFilter: "blur(4px)",
             boxShadow: "0 30px 60px rgba(242, 172, 9, 1)",

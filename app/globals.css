@@ -362,6 +362,10 @@ select:focus {
 }
 
 .polished {
+  display: flex;
+  gap: 32px;
+  padding: 48px 64px;
+  align-items: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -459,6 +463,7 @@ select:focus {
 
 .hero-brand {
   display: flex;
+  flex-shrink: 0;
   align-items: center;
   gap: 14px;
   margin-bottom: 16px;
@@ -467,7 +472,7 @@ select:focus {
 
 .hero-logo {
   width: 220px;
-  height: 220px;
+  height: auto;
   border-radius: 50%;
 
 }
@@ -578,71 +583,48 @@ select:focus {
   }
 }
 */
+.hero-content h1 {
+  font-size: 32px;
+}
 
-/* ========================================
-   MOBILE HOME HERO LAYOUT FIX
-/* ========================================
-   MOBILE HOME HERO – FINAL FIX
-   ======================================== */
-/* ========================================
-   MOBILE HOME HERO – FINAL FIX (CSS ONLY)
-   ======================================== */
-/* ========================================
-   MOBILE HERO – STABLE & CONTAINED FIX
-   ======================================== */
-@media (max-width: 640px) {
+.hero-content h2 {
+  font-size: 18px;
+}
 
-  /* Lock hero card layout */
-  .home-hero {
-    display: flex;
+@media (max-width: 768px) {
+  .polished {
     flex-direction: column;
-    align-items: center;
     text-align: center;
-    overflow: hidden;
-    /* prevents button spill */
+    padding: 28px 20px;
   }
 
-  /* Brand stack */
-  .home-hero .hero-brand {
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 14px;
+  .hero-brand {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 12px;
   }
 
-  /* Logo ABOVE title */
-  .home-hero .hero-logo {
-    width: 260px;
-    height: 260px;
-    margin: 0 auto;
-    display: block;
+  .hero-logo {
+    width: 180px;
+    /* bigger logo */
   }
 
-  /* Smaller app name */
-  .home-hero .hero-title {
-    font-size: 26px;
-    line-height: 1.1;
-    margin: 0;
+  .hero-content h1 {
+    font-size: 24px;
+    /* smaller title */
   }
 
-  /* Contain text properly */
-  .home-hero p {
-    max-width: 90%;
+  .hero-content h2 {
     font-size: 14px;
-    line-height: 1.45;
   }
 
-  /* Buttons stay INSIDE card */
-  .home-hero .actions,
-  .home-hero button,
-  .home-hero .button {
+  .hero-content p {
+    font-size: 14px;
+  }
+
+  .button-primary,
+  .button-secondary {
     width: 100%;
-    max-width: 260px;
-  }
-
-  /* Reduce vertical padding */
-  .home-hero.card {
-    padding-top: 24px;
-    padding-bottom: 24px;
+    font-size: 14px;
   }
 }
