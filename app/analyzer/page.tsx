@@ -7,40 +7,168 @@ import Card from "../components/card"
 import SeverityBadge from "../components/severitybadge"
 
 const SYMPTOMS = [
-  { key: "fever", label: "Fever" },
-  { key: "sore_throat", label: "Sore Throat" },
-  { key: "headache", label: "headache" },
-  { key: "cold", label: "Cold" },
-  { key: "running_nose", label: "Running Nose" },
-  { key: "sneezing", label: "Sneezing" },
-  { key: "dry_cough", label: "Dry Cough" },
-  { key: "wet_cough", label: "Wet Cough" },
-  { key: "cough", label: "Cough" },
-  { key: "chest_congestion", label: "Chest Congestion" },
-  { key: "breathlessness", label: "Shortness of Breath" },
-  { key: "chest_pain", label: "Chest Pain" },
-  { key: "body_pain", label: "Body Pain" },
-  { key: "back_pain", label: "Back Pain" },
-  { key: "fatigue", label: "Fatigue" },
-  { key: "weakness", label: "Weakness" },
-  { key: "dizziness", label: "Dizziness" },
-  { key: "nausea", label: "Nausea" },
-  { key: "vomiting", label: "Vomiting" },
-  { key: "diarrhea", label: "Diarrhea" },
-  { key: "stomach_pain", label: "Stomach Pain" },
-  { key: "acid_reflux", label: "Acid Reflux" },
-  { key: "indigestion", label: "Indigestion" },
-  { key: "gas", label: "Gas" },
-  { key: "bloating", label: "Bloating" },
-  { key: "constipation", label: "Constipation" },
-  { key: "tooth_pain", label: "Tooth Pain" },
-  { key: "skin_irritation", label: "Skin Irritation" },
-  { key: "acne", label: "Acne" },
-  { key: "pimples", label: "Pimples" },
-  { key: "dandruff", label: "Dandruff" },
-  { key: "hairfall", label: "Hair Fall" },
-  { key: "menstrual_cramps", label: "Menstrual Cramps" }
+  {
+    key: "fever",
+    label: "Fever",
+    keywords: ["fever", "high temperature", "hot body", "temperature"]
+  },
+  {
+    key: "sore_throat",
+    label: "Sore Throat",
+    keywords: ["sore throat", "throat pain", "pain while swallowing"]
+  },
+  {
+    key: "headache",
+    label: "Headache",
+    keywords: ["headache", "head pain", "migraine"]
+  },
+  {
+    key: "cold",
+    label: "Cold",
+    keywords: ["cold", "blocked nose", "nasal congestion"]
+  },
+  {
+    key: "running_nose",
+    label: "Running Nose",
+    keywords: ["running nose", "runny nose", "nose leaking"]
+  },
+  {
+    key: "sneezing",
+    label: "Sneezing",
+    keywords: ["sneezing", "sneeze"]
+  },
+  {
+    key: "dry_cough",
+    label: "Dry Cough",
+    keywords: ["dry cough", "non productive cough"]
+  },
+  {
+    key: "wet_cough",
+    label: "Wet Cough",
+    keywords: ["wet cough", "phlegm cough", "productive cough"]
+  },
+  {
+    key: "cough",
+    label: "Cough",
+    keywords: ["cough", "coughing"]
+  },
+  {
+    key: "chest_congestion",
+    label: "Chest Congestion",
+    keywords: ["chest congestion", "heavy chest", "mucus in chest"]
+  },
+  {
+    key: "breathlessness",
+    label: "Shortness of Breath",
+    keywords: ["shortness of breath", "breathlessness", "difficulty breathing"]
+  },
+  {
+    key: "chest_pain",
+    label: "Chest Pain",
+    keywords: ["chest pain", "pain in chest"]
+  },
+  {
+    key: "body_pain",
+    label: "Body Pain",
+    keywords: ["body pain", "body ache", "muscle pain"]
+  },
+  {
+    key: "back_pain",
+    label: "Back Pain",
+    keywords: ["back pain", "lower back pain", "upper back pain"]
+  },
+  {
+    key: "fatigue",
+    label: "Fatigue",
+    keywords: ["fatigue", "tiredness", "low energy"]
+  },
+  {
+    key: "weakness",
+    label: "Weakness",
+    keywords: ["weakness", "feeling weak"]
+  },
+  {
+    key: "dizziness",
+    label: "Dizziness",
+    keywords: ["dizziness", "giddiness", "light headed"]
+  },
+  {
+    key: "nausea",
+    label: "Nausea",
+    keywords: ["nausea", "feeling sick"]
+  },
+  {
+    key: "vomiting",
+    label: "Vomiting",
+    keywords: ["vomiting", "throwing up", "puking"]
+  },
+  {
+    key: "diarrhea",
+    label: "Diarrhea",
+    keywords: ["diarrhea", "loose motion", "loose stools"]
+  },
+  {
+    key: "stomach_pain",
+    label: "Stomach Pain",
+    keywords: ["stomach pain", "abdominal pain", "belly pain"]
+  },
+  {
+    key: "acid_reflux",
+    label: "Acid Reflux",
+    keywords: ["acid reflux", "heartburn", "acidity"]
+  },
+  {
+    key: "indigestion",
+    label: "Indigestion",
+    keywords: ["indigestion", "upset stomach"]
+  },
+  {
+    key: "gas",
+    label: "Gas",
+    keywords: ["gas", "flatulence"]
+  },
+  {
+    key: "bloating",
+    label: "Bloating",
+    keywords: ["bloating", "bloated stomach"]
+  },
+  {
+    key: "constipation",
+    label: "Constipation",
+    keywords: ["constipation", "hard stool"]
+  },
+  {
+    key: "tooth_pain",
+    label: "Tooth Pain",
+    keywords: ["tooth pain", "toothache", "dental pain"]
+  },
+  {
+    key: "skin_irritation",
+    label: "Skin Irritation",
+    keywords: ["skin irritation", "itching", "rash"]
+  },
+  {
+    key: "acne",
+    label: "Acne",
+    keywords: ["acne", "pimples"]
+  },
+  {
+    key: "dandruff",
+    label: "Dandruff",
+    keywords: ["dandruff", "flaky scalp"]
+  },
+  {
+    key: "hairfall",
+    label: "Hair Fall",
+    keywords: ["hair fall", "hair loss"]
+  },
+  {
+    key: "menstrual_cramps",
+    label: "Menstrual Cramps",
+    keywords: ["menstrual cramps", "period pain", "period cramps"]
+  }
 ]
+
 function HowToModal({ open, onClose }: { open: boolean; onClose: () => void }) {
   if (!open) return null
 
@@ -96,11 +224,17 @@ export default function Home() {
 
   const availableSymptoms = useMemo(() => {
     setHighlighted(0)
-    return SYMPTOMS.filter(
-      s =>
-        !selected.includes(s.key) &&
-        s.label.toLowerCase().includes(search.toLowerCase())
+    const q = search.toLowerCase()
+
+    return SYMPTOMS.filter(s =>
+      !selected.includes(s.key) &&
+      (
+        s.label.toLowerCase().includes(q) ||
+        s.keywords?.some(k => k.includes(q))
+      )
     )
+
+
   }, [search, selected])
 
 
@@ -124,20 +258,18 @@ export default function Home() {
     const cleaned = value.trim().toLowerCase()
     if (!cleaned) return false
 
-    // 1️⃣ Exact match
-    const exact = SYMPTOMS.find(
-      s => s.label.toLowerCase() === cleaned
+    const match = SYMPTOMS.find(s =>
+      s.label.toLowerCase() === cleaned ||
+      s.keywords?.some(k => k === cleaned)
     )
 
-    if (exact && !selected.includes(exact.key)) {
-      setSelected(prev => [...prev, exact.key])
+    if (match && !selected.includes(match.key)) {
+      setSelected(prev => [...prev, match.key])
       setSearch("")
       return true
     }
 
-    // 2️⃣ Partial match → pick first suggestion
     const partial = availableSymptoms[0]
-
     if (partial && !selected.includes(partial.key)) {
       setSelected(prev => [...prev, partial.key])
       setSearch("")
@@ -146,6 +278,7 @@ export default function Home() {
 
     return false
   }
+
 
   async function analyze() {
     setLoading(true)
