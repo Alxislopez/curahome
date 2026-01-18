@@ -34,12 +34,21 @@ function matchConditions(symptoms: string[]) {
     .sort((a, b) => b.matchRatio - a.matchRatio)
 }
 
+function calculateBMI(weightKg: number, age: number) {
+  // Rough adult average height assumption (safe heuristic)
+  const avgHeightM = age < 18 ? 1.4 : 1.7
+  return weightKg / (avgHeightM * avgHeightM)
+}
+
+function weightDoseFactor(bmi: number) {
+  if (bmi < 18.5) return 0.85       // underweight
+  if (bmi >= 25 && bmi < 30) return 1.1 // overweight
+  if (bmi >= 30) return 1.2         // obese
+  return 1                          // normal
+}
 
 export function analyzeSymptoms(
-  symptomKeys: string[],
-  age: number,
-  sex: "male" | "female"
-) {
+  symptomKeys: string[], age: number, sex: "male" | "female", weight?: number) {
   let { totalScore, emergency } = calculateSeverity(symptomKeys)
 
   // 🔺 Age-based severity adjustment
@@ -91,16 +100,37 @@ export function analyzeSymptoms(
   const balancedMedicines = selectedMedicines.map(med => {
     let dose = calculateBalancedDose(med.standardDoseMg, medicineCount)
 
-    if (age < 12) dose = Math.floor(dose * 0.5)
-    if (age >= 60) dose = Math.floor(dose * 0.75)
+    // 👶👴 Age adjustments
+    if (age < 12) dose *= 0.5
+    if (age >= 60) dose *= 0.75
+
+    // ⚖️ Weight-based adjustment (optional)
+    let weightNote = ""
+    if (weight) {
+      const bmi = calculateBMI(weight, age)
+      const factor = weightDoseFactor(bmi)
+      dose *= factor
+
+      if (factor !== 1) {
+        weightNote = "Dose adjusted based on body weight."
+      }
+    }
+
+    dose = Math.floor(dose)
+
+    // 🚨 Safety cap
+    if (med.maxDailyDoseMg > 0) {
+      dose = Math.min(dose, med.maxDailyDoseMg)
+    }
 
     return {
       name: med.name,
-      dose: `${dose} mg`,
+      dose: dose > 0 ? `${dose} mg` : "As directed",
       frequency: med.frequency,
-      notes: med.notes
+      notes: [med.notes, weightNote].filter(Boolean).join(" ")
     }
   })
+
 
   // 🧠 Recommendation logic
   const recommendation =
@@ -117,6 +147,8 @@ export function analyzeSymptoms(
     remedies: Array.from(remedies),
     foods: Array.from(foods),
     medicines: balancedMedicines,
+    weightUsed: Boolean(weight),
+
     disclaimer: "Not a medical diagnosis."
   }
 }

@@ -6,7 +6,7 @@ import { analyzeSymptoms } from "@/lib/engine"
 export async function POST(request: Request) {
     try {
         const body = await request.json()
-        const { symptoms, age, sex } = body
+        const { symptoms, age, sex, weight } = body
 
         // 🔒 Validation
         if (!Array.isArray(symptoms) || symptoms.length === 0) {
@@ -31,7 +31,7 @@ export async function POST(request: Request) {
         }
 
         // 🧠 Analyze with age & sex
-        const result = analyzeSymptoms(symptoms, age, sex)
+        const result = analyzeSymptoms(symptoms, age, sex, weight)
 
         return NextResponse.json(result)
     } catch (error) {

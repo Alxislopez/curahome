@@ -41,6 +41,46 @@ const SYMPTOMS = [
   { key: "hairfall", label: "Hair Fall" },
   { key: "menstrual_cramps", label: "Menstrual Cramps" }
 ]
+function HowToModal({ open, onClose }: { open: boolean; onClose: () => void }) {
+  if (!open) return null
+
+  return (
+    <div className="modal-backdrop">
+      <div className="modal-card">
+        <button className="modal-close" onClick={onClose}>×</button>
+
+        <h2>How to use Symptom Analyzer</h2>
+
+        <img
+          src="/analyzer-help.png"
+          alt="How to use symptom analyzer"
+          className="modal-image"
+        />
+
+        <ol>
+          <li>
+            Enter your <strong>age</strong> and <strong>sex</strong>.
+            <br />
+            <span className="text-muted">
+              Adding weight improves dosage accuracy (optional).
+            </span>
+          </li>
+          <li>Type symptoms and press <strong>Enter</strong></li>
+          <li>Add multiple symptoms if needed</li>
+          <li>Click <strong>Analyze Symptoms</strong></li>
+        </ol>
+
+        <p className="text-muted">
+          This gives safe home-care guidance, not a diagnosis.
+        </p>
+
+        <button className="button-primary" onClick={onClose}>
+          Got it
+        </button>
+      </div>
+    </div>
+  )
+}
 
 export default function Home() {
   const [age, setAge] = useState(25)
@@ -50,6 +90,9 @@ export default function Home() {
   const [result, setResult] = useState<any>(null)
   const [loading, setLoading] = useState(false)
   const [highlighted, setHighlighted] = useState(0)
+  const [showHelp, setShowHelp] = useState(true)
+  const [weight, setWeight] = useState<string>("")
+
 
   const availableSymptoms = useMemo(() => {
     setHighlighted(0)
@@ -104,18 +147,30 @@ export default function Home() {
     return false
   }
 
-
   async function analyze() {
     setLoading(true)
+
+    const payload: any = {
+      symptoms: selected,
+      age,
+      sex
+    }
+
+    if (weight.trim() !== "") {
+      payload.weight = Number(weight)
+    }
+
     const res = await fetch("/api/analyze", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ symptoms: selected, age, sex })
+      body: JSON.stringify(payload)
     })
+
     const data = await res.json()
     setResult(data)
     setLoading(false)
   }
+
 
   function generatePDF() {
     if (!result) return
@@ -182,12 +237,25 @@ export default function Home() {
   return (
     <main className="container">
       <div className="ana-bg" />
+      <HowToModal open={showHelp} onClose={() => setShowHelp(false)} />
+
       <Link href="/">← Back to Home</Link>
       <Card>
-        <h1>Symptom Analyzer</h1>
+        <header>
+          <h1><strong>Symptom Analyzer</strong></h1>
+          <button onClick={() => setShowHelp(true)} style={{ float: "right" }}>How to use?</button>
+        </header>
 
         <label>Age</label>
         <input type="number" value={age} onChange={e => setAge(+e.target.value)} />
+        <label>Weight (kg) <span className="text-muted">(optional)</span></label>
+        <input
+          type="number"
+          placeholder="e.g. 60"
+          value={weight}
+          onChange={e => setWeight(e.target.value)}
+
+        />
 
         <label>Sex</label>
         <select value={sex} onChange={e => setSex(e.target.value as any)}>
@@ -310,6 +378,12 @@ export default function Home() {
                     {m.notes && <small>{m.notes}</small>}
                   </li>
                 ))}
+                {result.weightUsed && (
+                  <p style={{ color: "gray" }}>
+                    Dosage adjusted using age + weight.
+                  </p>
+                )}
+
               </ul>
             </>
           )}
