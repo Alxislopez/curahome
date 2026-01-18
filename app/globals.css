@@ -581,49 +581,49 @@ select:focus {
 
 /* ========================================
    MOBILE HOME HERO LAYOUT FIX
+/* ========================================
+   MOBILE HOME HERO – FINAL FIX
    ======================================== */
 @media (max-width: 640px) {
 
   .hero-brand {
+    display: flex;
     flex-direction: column;
-    /* STACK logo above text */
+    /* logo ABOVE text */
     align-items: center;
     text-align: center;
-    gap: 10px;
-    /* tighter spacing */
-    margin-bottom: 14px;
+    gap: 8px;
+    margin-bottom: 18px;
   }
 
   .hero-logo {
     width: 260px;
-    /* BIG logo */
     height: 260px;
-    margin-bottom: 6px;
+    margin: 0;
   }
 
   .hero-title {
-    font-size: 28px;
+    font-size: 26px;
     /* smaller app name */
     font-weight: 700;
     line-height: 1.1;
   }
 
-  /* Optional: tighten subtitle text */
-  .hero-subtitle {
-    font-size: 15px;
-    line-height: 1.4;
-  }
-
-  /* Reduce body text slightly */
+  /* Reduce subtitle & body text slightly */
   .card p {
-    font-size: 15px;
+    font-size: 14.5px;
+    line-height: 1.45;
   }
 
-  /* Buttons slightly smaller */
+  /* Buttons more compact */
   button,
   .button {
     height: 44px;
     font-size: 14px;
     padding: 0 18px;
   }
+}
+
+.hero-logo {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
 }
